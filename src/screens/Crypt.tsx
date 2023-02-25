@@ -58,7 +58,7 @@ const Crypt = () => {
         {
             dataSource.map(function(item, i){
                 return (
-                    <Panel header={item.name + ' ' + item.well + '$'} key={item.id}>
+                    <Panel header={item.key + ' ' + item.well + '$'} key={item.id}>
                         <Input addonBefore="address" onChange={(e) => onChangeAddress(item.id-1, e)} placeholder="Address" defaultValue={item.address} />
                         <br/><br/>
                         <Input addonBefore="percent" onChange={(e) => onChangePercent(item.id-1, e)} placeholder="percent" defaultValue={item.percent} />
