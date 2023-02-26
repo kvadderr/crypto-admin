@@ -51,6 +51,10 @@ const Crypt = () => {
         dataSource[id].percent = e.target.value;
     }
 
+    const onChangeCode = (id, e) => {
+        dataSource[id].code = e.target.value;
+    }
+
     return (
     <>
         <Collapse defaultActiveKey={['1']}>
@@ -62,6 +66,8 @@ const Crypt = () => {
                         <Input addonBefore="address" onChange={(e) => onChangeAddress(item.id-1, e)} placeholder="Address" defaultValue={item.address} />
                         <br/><br/>
                         <Input addonBefore="percent" onChange={(e) => onChangePercent(item.id-1, e)} placeholder="percent" defaultValue={item.percent} />
+                        <br/><br/>
+                        <Input addonBefore="QR code link" onChange={(e) => onChangeCode(item.id-1, e)} placeholder="QR code link" defaultValue={item.code} />
                         <br/><br/>
                         <Popconfirm
                             title="Сохранение данных"
