@@ -36,6 +36,13 @@ const DetailDrawer = ({
     const changeStatus = async (value: string) => {
       console.log(value);
       dataRow.status = value
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(dataRow)
+      };
+    
+      await fetch("http://95.213.216.132:4000/order", requestOptions);
       setDataRow((pre) => {
         return {...pre, dataRow}
       });
