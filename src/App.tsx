@@ -8,11 +8,19 @@ import { Menu, Layout, theme } from 'antd';
 //import custom data
 import { menuItems } from './data/menuItems'
 
+import { AuthProvider } from './context/AuthProvider';
+import RequireAuth from './screens/RequireAuth';
 import Order from './screens/Order'
 import Crypt from './screens/Crypt'
+import Login from './screens/Login'
+
 const { Content, Sider } = Layout;
 
 function App() {
+
+  const ROLES = {
+    'ADMIN': 'ADMIN'
+  }
 
   const {
     token: { colorBgContainer },
@@ -43,11 +51,16 @@ function App() {
                 background: colorBgContainer,
               }}
             >
+              <AuthProvider>
               <Routes>
-                <Route path='/' element={ <Order/> }/>
-                <Route path='/order' element={ <Order/> }/>
-                <Route path='/crypt' element={ <Crypt/> }/>
+                <Route path='/' element={ <Login/> }/>
+                <Route path='/login' element={ <Login/> }/>
+                <Route element={<RequireAuth allowedRoles={[ROLES.ADMIN]} />}>
+                  <Route path='/order' element={ <Order/> }/>
+                  <Route path='/crypt' element={ <Crypt/> }/>
+                </Route>
               </Routes>
+              </AuthProvider>
             </Content>
         </Layout>
       </Layout>
